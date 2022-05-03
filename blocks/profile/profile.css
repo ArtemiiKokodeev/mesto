@@ -20,7 +20,8 @@
     min-width: 282px;
     max-width: 282px;
     flex-direction: column;
-    padding: 42px 0 36px 0;
+    padding-top: 42px;
+    padding-bottom: 36px;
   }
 }
 

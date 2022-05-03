@@ -18,15 +18,15 @@
 
 @media screen and (max-width: 990px) {
   .profile__edit-button {
-    margin: 0 0 0 14px;
+    margin-left: 14px;
   }
 }
 
 @media screen and (max-width: 650px) {
   .profile__edit-button {
-    background-image: url(../../../images/edit-button-320.svg);
+    background-size: 18px 18px;
     background-repeat: no-repeat;
-    margin: 0 0 0 10px;
+    margin-left: 10px;
     width: 18px;
     height: 18px;
   }

@@ -7,6 +7,6 @@
   .profile__box {
     flex-direction: column;
     padding: 0 0 36px 0;
-    width: 282px;
+    max-width: 282px;
   }
 }
