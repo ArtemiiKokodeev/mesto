@@ -33,4 +33,4 @@
 ## Автор
 Артемий Кокодеев [Github](https://github.com/ArtemiiKokodeev)
 
-Проект на [Github Pages](https://artemiikokodeev.github.io/russian-travel/)
+Проект на [Github Pages](https://artemiikokodeev.github.io/mesto/)
