@@ -173,5 +173,3 @@ const popupOpenCardClose = () => {
 };
 
 popupOpenCardCloseButton.addEventListener('click', popupOpenCardClose);
-
-

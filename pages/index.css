@@ -46,11 +46,7 @@
 @import url(../blocks/popup/__text/_type/popup__text_type_image-link.css);
 
 @import url(../blocks/popup/_open-card/popup_open-card.css);
-@import url(../blocks/popup/__container/_open-card/popup__container_open-card.css);
+@import url(../blocks/popup/__opencard-container/popup__opencard-container.css);
 @import url(../blocks/popup/__close/_open-card/popup__close_open-card.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__place-name/popup__place-name.css);
-
-
-
-
