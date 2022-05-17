@@ -39,7 +39,9 @@
 @import url(../blocks/popup/__text/_type/popup__text_type_name.css);
 @import url(../blocks/popup/__text/_type/popup__text_type_occupation.css);
 
-@import url(../blocks/popup/_add-card/popup__close_add-card.css);
+@import url(../blocks/popup/_edit-profile/popup_edit-profile.css);
+
+@import url(../blocks/popup/_add-card/popup_add-card.css);
 @import url(../blocks/popup/__close/_add-card/popup__close_add-card.css);
 @import url(../blocks/popup/__content/_add-card/popup__content_add-card.css);
 @import url(../blocks/popup/__text/_type/popup__text_type_place-name.css);

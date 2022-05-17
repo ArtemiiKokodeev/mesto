@@ -13,7 +13,8 @@
   <main class="content">
     <section class="profile">
       <div class="profile__box">
-        <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар">
+        <img class="profile__avatar" src="./images/profile-avatar.jpg"
+        alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__edit-button" type="button"></button>
@@ -31,31 +32,37 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022. Артемий Кокодеев</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_edit-profile">
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
       <form name="userInfoForm" class="popup__content">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <input name="userName" type="text" placeholder="Имя" class="popup__text popup__text_type_name">
-        <input name="userOccupation" type="text" placeholder="О себе" class="popup__text popup__text_type_occupation">
+        <input name="userName" type="text" placeholder="Имя"
+        class="popup__text popup__text_type_name">
+        <input name="userOccupation" type="text" placeholder="О себе"
+        class="popup__text popup__text_type_occupation">
         <button class="popup__submit" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
   <div class="popup popup_add-card">
     <div class="popup__container">
-      <button class="popup__close popup__close_add-card" type="button"></button>
+      <button class="popup__close popup__close_add-card" type="button">
+      </button>
       <form name="addCardForm" class="popup__content popup__content_add-card">
         <h3 class="popup__title">Новое место</h3>
-        <input name="placeName" type="text" placeholder="Название" class="popup__text popup__text_type_place-name">
-        <input name="imageLink" type="text" placeholder="Ссылка на картинку" class="popup__text popup__text_type_image-link">
+        <input name="placeName" type="text" placeholder="Название"
+        class="popup__text popup__text_type_place-name">
+        <input name="imageLink" type="text" placeholder="Ссылка на картинку"
+        class="popup__text popup__text_type_image-link">
         <button class="popup__submit" type="submit">Создать</button>
       </form>
     </div>
   </div>
   <div class="popup popup_open-card">
     <div class="popup__opencard-container">
-      <button class="popup__close popup__close_open-card" type="button"></button>
+      <button class="popup__close popup__close_open-card" type="button">
+      </button>
       <img class="popup__image">
       <p class="popup__place-name"></p>
     </div>
