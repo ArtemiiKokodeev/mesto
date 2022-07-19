@@ -79,25 +79,18 @@ function openPopup(element) {
   document.addEventListener('keyup', handleEscClose);
   element.addEventListener('click', popupOverlayClickHandler);
 }
-  // Функция скрытия подсказок об ошибках при открытии попапа
-
-function hideInputErrorsOpenPopup(element, formValidator) {
-  const inputsForm = Array.from(element.querySelectorAll(popupClassObject.inputSelector));
-  inputsForm.forEach((popupInput) => {
-    formValidator.hideInputError(popupInput);
-  });
-};
 
   // Универсальные функции закрытия попапа
 
 function closePopup(element) {
   element.classList.remove('popup_opened');
   document.removeEventListener('keyup', handleEscClose);
+  element.removeEventListener('click', popupOverlayClickHandler);
 };
 
 function handleEscClose (evt) {
-  const popupIsActive = document.querySelector(('.popup_opened'));
   if (evt.key === 'Escape') {
+    const popupIsActive = document.querySelector(('.popup_opened'));
     closePopup(popupIsActive);
   };
 };
@@ -113,7 +106,7 @@ function popupOverlayClickHandler (evt) {
 function openEditProfileForm() {
   nameInput.value = nameText.textContent;
   occupationInput.value = occupationText.textContent;
-  hideInputErrorsOpenPopup(popupEditProfile, formEditProfileValidator);
+  formEditProfileValidator.resetValidation();
   openPopup(popupEditProfile);
 };
 
@@ -131,8 +124,7 @@ function submitEditProfileForm (evt) {
 
 function openAddCardForm() {
   formAddCard.reset();
-  formAddCardValidator.disabledButton();
-  hideInputErrorsOpenPopup(popupAddCard, formAddCardValidator);
+  formAddCardValidator.resetValidation();
   openPopup(popupAddCard);
 };
 
@@ -140,18 +132,14 @@ function openAddCardForm() {
 
 function submitAddCardForm (evt) {
   evt.preventDefault();
-
-  const card = new Card(placeNameInput.value, imageLinkInput.value, '.elements-template');
-  const cardElement = card.generateCard();
-  elementsListContainer.prepend(cardElement);
-
+  renderCard(elementsListContainer, createCard(placeNameInput.value, imageLinkInput.value, '.elements-template', openPopupOpenCard));
   closePopup(popupAddCard);
   formAddCard.reset();
 };
 
   // Открытие попапа OpenCard
 
-export function openPopupOpenCard(name, link) {
+function openPopupOpenCard(name, link) {
   placeNameOpenCard.textContent = name;
   imageOpenCard.src = link;
   imageOpenCard.alt = name;
@@ -160,12 +148,24 @@ export function openPopupOpenCard(name, link) {
 };
 
 
+// Функция создания карточки
+
+function createCard (name, link, template, openImageFunction) {
+  const card = (new Card(name, link, template, openImageFunction).generateCard());
+  return card;
+};
+
+// Функция добавления карточки в разметку
+
+function renderCard (container, cardItem) {
+  container.prepend(cardItem);
+};
+
+
 // Создание экземпляра класса (карточки)
 
 initialCards.forEach((cardsData) => {
-  const initialCard = new Card(cardsData.name, cardsData.link, '.elements-template');
-  const initialCardElement = initialCard.generateCard()
-  elementsListContainer.prepend(initialCardElement);
+  renderCard(elementsListContainer, createCard(cardsData.name, cardsData.link, '.elements-template', openPopupOpenCard));
 });
 
 

@@ -1,10 +1,13 @@
-import { openPopupOpenCard } from './index.js';
+// Определение класса карточки,
+// используется в index.js в функции генерации 6 карточек из стандартного массива
+// и функции создания новых карточек в форме AddCard
 
 export default class Card {
-  constructor(name, link, cardSelector) {
+  constructor(name, link, cardSelector, openPopupOpenCard) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._openPopupOpenCard = openPopupOpenCard;
   };
 
 
@@ -46,7 +49,8 @@ export default class Card {
     // Обработчик клика на кнопку удаления карточки
 
   _handleDeleteElement() {
-    this._element.closest('.element').remove();
+    this._element.remove();
+    this._element = null;
     };
 
       // Обработчик клика на кнопку лайка карточки
@@ -58,7 +62,7 @@ export default class Card {
       // Обработчик клика на картинку
 
   _handleOpenImage() {
-    openPopupOpenCard(this._name, this._link);
+    this._openPopupOpenCard(this._name, this._link);
   }
 
 
@@ -73,8 +77,8 @@ export default class Card {
     this._eventListeners();
 
     this._element.querySelector('.element__title').textContent = this._name;
-    this._element.querySelector('.element__image').alt = this._name;
-    this._element.querySelector('.element__image').src = this._link;
+    this._image.alt = this._name;
+    this._image.src = this._link;
 
     return this._element;
   };
