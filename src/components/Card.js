@@ -3,11 +3,11 @@
 // и функции создания новых карточек в форме AddCard
 
 export default class Card {
-  constructor(name, link, cardSelector, openPopupOpenCard) {
+  constructor(name, link, cardSelector, openPopup) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
-    this._openPopupOpenCard = openPopupOpenCard;
+    this._handleCardClick = openPopup;
   };
 
 
@@ -41,7 +41,7 @@ export default class Card {
       // Открытие картинки
 
       this._image.addEventListener('click', () => {
-        this._handleOpenImage();
+        this._handleCardClick(this._name, this._link);
       });
     };
 
@@ -61,9 +61,9 @@ export default class Card {
 
       // Обработчик клика на картинку
 
-  _handleOpenImage() {
-    this._openPopupOpenCard(this._name, this._link);
-  }
+//   _handleOpenImage() {
+//    this._handleCardClick(this._name, this._link);
+//  }
 
 
     // Геренация карточки
