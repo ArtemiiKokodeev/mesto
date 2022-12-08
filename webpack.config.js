@@ -4,13 +4,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // плагин,
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // плагин сборки CSS файлов в один
 
 module.exports = {
-  entry: { main: './src/index.js' },
+  entry: { main: './src/pages/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
         publicPath: ''
   },
   mode: 'development', // добавили режим разработчика
+    devtool: 'source-map',
     devServer: {
       static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
       compress: true, // это ускорит загрузку в режиме разработки
