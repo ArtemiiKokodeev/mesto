@@ -2,10 +2,14 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-	constructor({popupSelector, handleFormSubmit}) {
+	constructor({popupSelector, submitText, handleFormSubmit}) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector('.popup__content');
+    this._submitButton = this._form.querySelector('.popup__submit');
+    //console.log(this._submitButton);
+    this._submitText = submitText;
+    //console.log(this._submitText);
     this._inputList = Array.from(this._popup.querySelectorAll('.popup__text'));
     //console.log(this._inputList);
   }
@@ -33,6 +37,16 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
     });
+  }
+
+  // Метод уведомления пользователя о процессе загрузки данных на сервер
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = 'Сохранение...';
+    } else {
+      this._submitButton.textContent = this._submitText;
+    }
   }
 
   // Перезаписывает родительский метод close, так как при закрытии попапа

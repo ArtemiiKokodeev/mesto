@@ -3,11 +3,17 @@
 // и функции создания новых карточек в форме AddCard
 
 export default class Card {
-  constructor(name, link, cardSelector, openPopup) {
-    this._name = name;
-    this._link = link;
+  constructor(item, userId, handleCardClick, handleDeleteCardClick, handleLikeClick, cardSelector) {
+    this._name = item.name;
+    this._link = item.link;
+    this._likes = item.likes;
+    this._id = item._id;
+    this._ownerId = item.owner._id;
+    this._userId = userId;
+    this._handleCardClick = handleCardClick;
+    this._handleDeleteCardClick = handleDeleteCardClick;
+    this._handleLikeClick = handleLikeClick;
     this._cardSelector = cardSelector;
-    this._handleCardClick = openPopup;
   };
 
 
@@ -25,17 +31,18 @@ export default class Card {
 
     // Слушатели событий
 
-    _eventListeners() {
-      // Удаление карточки
+  _eventListeners() {
+
+    // Удаление карточки
 
       this._delete.addEventListener('click', () => {
-        this._handleDeleteElement();
+        this._handleDeleteCardClick(this._id);
       });
 
       // Лайк карточки
 
       this._like.addEventListener('click', () => {
-        this._handleLikeElement();
+        this._handleLikeClick(this._id);
       });
 
       // Открытие картинки
@@ -48,25 +55,46 @@ export default class Card {
 
     // Обработчик клика на кнопку удаления карточки
 
-  _handleDeleteElement() {
+  handleDeleteElement() {
     this._element.remove();
     this._element = null;
     };
 
-      // Обработчик клика на кнопку лайка карточки
 
-  _handleLikeElement() {
-    this._like.classList.toggle('element__like-button_active');
-    };
+    // Обработчик подсчета лайков карточки
 
-      // Обработчик клика на картинку
+  setLikes(newLikes) {
+    //console.log(newLikes)
+    this._likes = newLikes;
+    const likeCounterElement = this._element.querySelector('.element__like-counter');
+    likeCounterElement.textContent = this._likes.length;
 
-//   _handleOpenImage() {
-//    this._handleCardClick(this._name, this._link);
-//  }
+    if(this.isLiked()) {
+      this._like.classList.add('element__like-button_active');
+    } else {
+      this._like.classList.remove('element__like-button_active');
+    }
+  }
 
 
-    // Геренация карточки
+    // Проверка нажатия лайка карточки пользователем
+
+  isLiked() {
+    const userHasLikedCard = this._likes.find(user => user._id === this._userId);
+    return userHasLikedCard;
+  }
+
+
+    // Скрытие корзин удаления на чужих карточках
+
+  _hideDeleteButton() {
+    if(this._userId !== this._ownerId) {
+      this._delete.style.display = 'none'
+    }
+  }
+
+
+    // Создание карточки из темплейта, наполнение контентом, добавление методов
 
   generateCard() {
     this._element = this._getTemplate();
@@ -79,6 +107,10 @@ export default class Card {
     this._element.querySelector('.element__title').textContent = this._name;
     this._image.alt = this._name;
     this._image.src = this._link;
+
+    this.setLikes(this._likes);
+
+    this._hideDeleteButton();
 
     return this._element;
   };
