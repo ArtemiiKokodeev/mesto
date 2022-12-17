@@ -35,7 +35,7 @@ let userId
 Promise.all([apiNew.getInitialCards(), apiNew.getProfileInfo()])
   .then(([initCards, initUserInfo]) => {
     //console.log(initCards)
-    console.log(initUserInfo)
+    //console.log(initUserInfo)
 
     userId = initUserInfo._id;
     //console.log(userId)
@@ -79,14 +79,13 @@ const popupEditProfile = new PopupWithForm({
     apiNew.editProfileInfo({userName, userOccupation})
     .then(() => {
       userInformation.setUserInfo({userName, userOccupation});
-
+      popupEditProfile.close();
     })
     .catch((error) => {
       console.log(`Ошибка при изменении профиля: ${error}`)
     })
     .finally(() => popupEditProfile.renderLoading(false))
 
-    popupEditProfile.close();
   }
 });
 
@@ -120,14 +119,14 @@ const popupEditAvatar = new PopupWithForm({
     apiNew.editAvatar({avatarLink})
     .then(() => {
       userInformation.setUserInfo({avatarLink});
-      console.log(avatarLink)
+      //console.log(avatarLink)
+      popupEditAvatar.close();
     })
     .catch((error) => {
       console.log(`Ошибка при изменении аватара: ${error}`)
     })
     .finally(() => popupEditAvatar.renderLoading(false))
 
-    popupEditAvatar.close();
   }
 })
 
@@ -154,18 +153,17 @@ const popupAddNewCard = new PopupWithForm({
 
     popupAddNewCard.renderLoading(true);
 
-    console.log(item)
+    //console.log(item)
     apiNew.addNewCard(item.name, item.link)
     .then((newCard) => {
       cardRenderer.addItem(createCard(newCard));
-
+      popupAddNewCard.close();
     })
     .catch((error) => {
       console.log(`Ошибка при добавлении карточки: ${error}`)
     })
     .finally(() => popupAddNewCard.renderLoading(false))
 
-    popupAddNewCard.close();
     }
   })
 
@@ -187,7 +185,7 @@ const popupAddNewCard = new PopupWithForm({
 
 const cardRenderer = new Section({
   renderer: (item) => {
-    cardRenderer.addItems(createCard(item))
+    cardRenderer.addItemToTheEnd(createCard(item))
     }
   },
   '.elements__list'
@@ -218,13 +216,13 @@ function createCard(item) {
       if(card.isLiked()) {
         apiNew.removeCardLike(id)
         .then((res) => {
-          console.log(res)
+          //console.log(res)
           card.setLikes(res.likes)
         })
       } else {
         apiNew.addCardLike(id)
         .then((res) => {
-          console.log(res)
+          //console.log(res)
           card.setLikes(res.likes)
         })
       }

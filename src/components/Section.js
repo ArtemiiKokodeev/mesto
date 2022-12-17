@@ -32,7 +32,7 @@ export default class Section {
     this._container.prepend(element);
   };
 
-  addItems(element) {
+  addItemToTheEnd(element) {
     this._container.append(element);
   };
 };
