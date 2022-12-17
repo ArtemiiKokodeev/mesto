@@ -13,7 +13,7 @@
     <section class="profile">
       <div class="profile__box">
         <div class="profile__avatar-container">
-          <img class="profile__avatar" src="" alt="Аватар">
+          <img class="profile__avatar" src="//:0" alt="Аватар">
           <div class="profile__avatar-overlay">
             <img class="profile__avatar-icon" src="<%=require('./images/edit-avatar.svg')%>" alt="Редактировать аватар">
           </div>
@@ -94,9 +94,9 @@
       <form name="editAvatarForm" class="popup__content popup__content_edit-avatar" novalidate>
         <h3 class="popup__title popup__title_edit-avatar">Обновить аватар</h3>
         <label class="popup__text-field">
-          <input id="image-link" name="avatarLink" type="url" placeholder="Ссылка на картинку"
+          <input id="image-avatarlink" name="avatarLink" type="url" placeholder="Ссылка на картинку"
           class="popup__text popup__text_type_image-link" required>
-          <span class="popup__text-error image-link-error"></span>
+          <span class="popup__text-error image-avatarlink-error"></span>
         </label>
         <button class="popup__submit" type="submit" name="submitButton">Сохранить</button>
       </form>
